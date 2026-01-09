@@ -59,6 +59,40 @@ Access Restrictions (Allow + Deny)
 
 ---
 
+## Security Evidence
+
+### Azure Entra ID Authentication Enforced
+Azure App Service authentication is enabled using Azure Entra ID. Unauthenticated requests are not permitted, enforcing an identity-first access model.
+
+![Entra Authentication Enabled](./evidence/entra-auth-enabled.png)
+
+---
+
+### Anonymous Access Blocked
+Unauthenticated access attempts to the application result in an HTTP 403 Forbidden response, confirming that anonymous access is denied.
+
+![Anonymous Access Blocked](./evidence/anonymous-access-blocked.png)
+
+---
+
+### Network Access Restrictions (Default Deny)
+Inbound access to the application is restricted using explicit allow rules with a default deny policy, reducing public exposure and limiting access to approved IP addresses only.
+
+![Network Access Restrictions](./evidence/network-access-restrictions.png)
+
+---
+
+### HTTP 4xx Monitoring and Alerting
+An Azure Monitor alert is configured to detect elevated HTTP 4xx responses, enabling visibility into authentication failures, unauthorized access attempts, and abnormal request patterns.
+
+![HTTP 4xx Alert](./evidence/http-4xx-alert.png)
+
+---
+
+### Observability & Platform Constraints
+Due to Azure Free-tier diagnostic limitations, application behavior was validated through platform-level metrics and access enforcement rather than full diagnostic logging. These constraints were documented as part of the security assessment.
+
+
 ## Engineering Tradeoffs
 Due to Azure Free-tier limitations:
 - Virtual Machines were not available (vCPU quota)
